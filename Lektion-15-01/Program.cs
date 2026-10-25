@@ -9,7 +9,7 @@ Använd string.IsNullOrWhiteSpace() i konstruktorn.
 Kasta ett ArgumentException om valideringen misslyckas.
 */
 
-namespace Lektion_15;
+namespace Lektion_15_01;
 
 class Program
 {
