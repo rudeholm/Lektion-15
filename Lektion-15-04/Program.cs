@@ -15,11 +15,11 @@ class Program
 {
     static void Main(string[] args)
     {
-        var anteckning = new Loggboksinlägg("Foo bar baz!", "###--- fslk sfl");
-        Console.WriteLine($"{anteckning.Meddelande}\n{anteckning.Signatur}\n{anteckning.Tidsstämpel}");
+        var anteckning = new Loggboksinlägg("Foo bar baz!", "Glorp");
+        Console.WriteLine(anteckning);
         // anteckning.Tidsstämpel = DateTime.Parse("2022-01-01");
 
-        var anteckning2 = new EnkeltLoggboksinlägg(DateTime.Now,"Foo bar baz!", "###--- fslk sfl");
+        var anteckning2 = new EnkeltLoggboksinlägg(DateTime.Now,"Foo bar baz!", "Glorp");
         // anteckning2.Tidsstämpel = DateTime.Parse("2022-01-01");
     }
 }
