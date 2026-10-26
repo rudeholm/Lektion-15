@@ -16,16 +16,21 @@ class Program
 {
     static void Main(string[] args)
     {
-        LäsKänsligFil("Filsökväg/som/inte/finns.txt");
+        LäsKänsligFil(@"Filsökväg/som/inte/finns.txt");
     }
 
     static void LäsKänsligFil(string sökväg)
     {
         try
         {
-            File.ReadAllText(sökväg);
+            var data = File.ReadAllText(sökväg);
+            Console.WriteLine(data);
         }
-        catch (Exception)
+        catch (DirectoryNotFoundException)
+        {
+            Console.WriteLine("Ett internt systemfel uppstod. Åtgärden kunde inte slutföras.");
+        }
+        catch (FileNotFoundException)
         {
             Console.WriteLine("Ett internt systemfel uppstod. Åtgärden kunde inte slutföras.");
         }
