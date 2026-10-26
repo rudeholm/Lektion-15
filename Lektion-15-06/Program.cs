@@ -16,19 +16,19 @@ class Program
 {
     static void Main(string[] args)
     {
-        var referens = new BokningsReferens("BÅT-1234");
-        // var referens2 = new BokningsReferens("BÅT12345");
+        var bokning = new BokningsReferens("BÅT-1234");
+        var referens2 = new BokningsReferens("BIL-1234");
     }
 }
 
 class BokningsReferens
 {
-    public BokningsReferens(string nummer)
+    public BokningsReferens(string kod)
     {
-        if (nummer.StartsWith("BÅT-") is false || nummer.Length != 8)
-            throw new FormatException();
+        if (kod.StartsWith("BÅT-") is false || kod.Length != 8)
+            throw new FormatException("Bokningsnummer måste ha formatet  \"BÅT-\" följt av fyra siffror, t.ex. \"BÅT-1234\"");
 
-        Nummer = nummer;
+        Nummer = kod;
     }
 
     public string Nummer { get; private set; }
