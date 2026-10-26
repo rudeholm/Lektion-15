@@ -11,6 +11,7 @@ ett säkert felmeddelande, men bifoga det gamla undantaget som en dold
 InnerException för administratörens ögon.
 */
 
+using System.Data;
 using System.Data.Common;
 
 namespace Lektion_15_09;
@@ -19,20 +20,37 @@ class Program
 {
     static void Main(string[] args)
     {
+        var db = new PassagerarDatabas();
+
         try
         {
-            HämtaPassagerarData();
+            db.HämtaPassagerarData();
         }
         catch (Exception e)
         {
             Console.WriteLine(e.Message);
+            Console.WriteLine();
+            Console.WriteLine($"({e.InnerException!.Message})");
         }
     }
+}
 
-    static void HämtaPassagerarData()
+public class PassagerarDatabas
+{
+    public void HämtaPassagerarData()
     {
-        throw new DataHämtningsException("Något gick fel.", new Exception("Känsliga tabellnamn och IP-adresser"));
+        try
+        {
+            // Simulera kritiskt fel
+            throw new DataException("Känsliga tabellnamn och IP-adresser");
+        }
+        catch (Exception e)
+        {
+            throw new DataHämtningsException("Kunde inte hämta passagerarlistan.", e);
+        }
+
     }
+
 }
 
 public class DataHämtningsException : Exception
