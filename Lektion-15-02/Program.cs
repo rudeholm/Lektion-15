@@ -15,20 +15,31 @@ class Program
     static void Main(string[] args)
     {
         var reg = new HastighetsRegulator();
-        reg.AktuellKnop = 33;
+        try
+        {
+            reg.AktuellKnop = 33;
+
+        }
+        catch (ArgumentOutOfRangeException e)
+        {
+        Console.WriteLine(e.Message);
+        }
         Console.WriteLine(reg.AktuellKnop);
     }
 }
 
 class HastighetsRegulator
 {
+    private int _aktuellKnop;
+
     public int AktuellKnop
     {
-        get;
+        get => _aktuellKnop;
+
         internal set
         {
             if (value < 0 || value > 30)
-                throw new ArgumentOutOfRangeException("Tillåtna värden är 0-30");
+                throw new ArgumentOutOfRangeException(nameof(value), "Tillåtna värden är 0-30");
         }
     }
 }
